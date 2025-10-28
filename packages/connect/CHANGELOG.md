@@ -1,5 +1,23 @@
 # @0xsequence/connect
 
+## 5.3.27
+
+### Patch Changes
+
+- fix for databeat events
+
+- Updated dependencies []:
+  - @0xsequence/hooks@5.3.27
+
+## 5.3.26
+
+### Patch Changes
+
+- Chain id override optio
+
+- Updated dependencies []:
+  - @0xsequence/hooks@5.3.26
+
 ## 5.3.25
 
 ### Patch Changes
