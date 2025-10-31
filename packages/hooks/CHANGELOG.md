@@ -1,5 +1,29 @@
 # @0xsequence/hooks
 
+## 5.3.27
+
+### Patch Changes
+
+- fix for databeat events
+
+## 5.3.26
+
+### Patch Changes
+
+- Chain id override optio
+
+## 5.3.25
+
+### Patch Changes
+
+- Improvement for wallet URL init
+
+## 5.3.24
+
+### Patch Changes
+
+- removed default networks from add funds
+
 ## 5.3.23
 
 ### Patch Changes
