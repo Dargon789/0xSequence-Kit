@@ -492,7 +492,7 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
     closeSelectPaymentModal()
     triggerAddFunds({
       walletAddress: userAddress || '',
-      provider: onRampProvider || TransactionOnRampProvider.sardine,
+      provider: onRampProvider || TransactionOnRampProvider.transak,
       networks: getNetworks(),
       defaultCryptoCurrency: dataCurrencyInfo?.symbol || '',
       onClose: selectPaymentSettings?.onClose
