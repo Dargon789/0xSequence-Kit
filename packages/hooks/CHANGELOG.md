@@ -1,5 +1,11 @@
 # @0xsequence/hooks
 
+## 5.3.28
+
+### Patch Changes
+
+- Minor fixes and improvements
+
 ## 5.3.27
 
 ### Patch Changes
