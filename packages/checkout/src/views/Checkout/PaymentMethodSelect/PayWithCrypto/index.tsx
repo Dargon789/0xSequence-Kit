@@ -26,7 +26,7 @@ import { ERC_20_CONTRACT_ABI } from '../../../../constants/abi.js'
 import { EVENT_SOURCE } from '../../../../constants/index.js'
 import { type PaymentMethodSelectionParams } from '../../../../contexts/NavigationCheckout.js'
 import type { SelectPaymentSettings } from '../../../../contexts/SelectPaymentModal.js'
-import { useAddFundsModal } from '../../../../hooks/index.js'
+import { useAddFundsModal, useTransactionCounter } from '../../../../hooks/index.js'
 import { useSelectPaymentModal, useTransactionStatusModal } from '../../../../hooks/index.js'
 import { useNavigationCheckout } from '../../../../hooks/useNavigationCheckout.js'
 
@@ -48,6 +48,14 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
   const { analytics } = useAnalyticsContext()
   const [isError, setIsError] = useState<boolean>(false)
   const { navigation, setNavigation } = useNavigationCheckout()
+  const {
+    initializeTransactionCounter,
+    incrementTransactionCount,
+    currentTransactionNumber,
+    maxTransactions,
+    isTransactionCounterInitialized,
+    resetTransactionCounter
+  } = useTransactionCounter()
 
   const {
     chain,
@@ -275,7 +283,7 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
         }
       ]
 
-      const txHash = await sendTransactions({
+      const txs = await sendTransactions({
         chainId,
         senderAddress: userAddress,
         publicClient,
@@ -286,6 +294,29 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
         transactionConfirmations,
         waitConfirmationForLastTransaction: false
       })
+
+      if (txs.length === 0) {
+        throw new Error('No transactions to send')
+      }
+
+      initializeTransactionCounter(txs.length)
+
+      let txHash: string | undefined
+      for (const [index, tx] of txs.entries()) {
+        const currentTxHash = await tx()
+        incrementTransactionCount()
+
+        const isLastTransaction = index === txs.length - 1
+
+        if (isLastTransaction) {
+          onSuccess?.(currentTxHash)
+          txHash = currentTxHash
+        }
+      }
+
+      if (!txHash) {
+        throw new Error('Transaction hash is not available')
+      }
 
       analytics?.track({
         event: 'SEND_TRANSACTION_REQUEST',
@@ -340,6 +371,7 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
       setIsError(true)
     }
 
+    resetTransactionCounter()
     setIsPurchasing(false)
   }
 
@@ -423,7 +455,7 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
         }
       ]
 
-      const txHash = await sendTransactions({
+      const txs = await sendTransactions({
         chainId,
         senderAddress: userAddress,
         publicClient,
@@ -434,6 +466,29 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
         transactionConfirmations,
         waitConfirmationForLastTransaction: false
       })
+
+      if (txs.length === 0) {
+        throw new Error('No transactions to send')
+      }
+
+      initializeTransactionCounter(txs.length)
+
+      let txHash: string | undefined
+      for (const [index, tx] of txs.entries()) {
+        const currentTxHash = await tx()
+        incrementTransactionCount()
+
+        const isLastTransaction = index === txs.length - 1
+
+        if (isLastTransaction) {
+          onSuccess?.(currentTxHash)
+          txHash = currentTxHash
+        }
+      }
+
+      if (!txHash) {
+        throw new Error('Transaction hash is not available')
+      }
 
       analytics?.track({
         event: 'SEND_TRANSACTION_REQUEST',
@@ -489,6 +544,7 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
     }
 
     setIsPurchasing(false)
+    resetTransactionCounter()
   }
 
   const onClickPurchase = () => {
@@ -612,6 +668,23 @@ export const PayWithCryptoTab = ({ skipOnCloseCallback, isSwitchingChainRef }: P
   }
 
   const PriceSection = () => {
+    if (isTransactionCounterInitialized) {
+      const descriptionText =
+        maxTransactions > 1
+          ? `Confirming transaction ${currentTransactionNumber} of ${maxTransactions}`
+          : `Confirming transaction`
+      return (
+        <div className="flex flex-col flex-wrap justify-between items-center w-full gap-2">
+          <div className="flex flex-col gap-0.5">
+            <Text variant="xsmall" color="text50">
+              {descriptionText}
+            </Text>
+          </div>
+          <Spinner />
+        </div>
+      )
+    }
+
     if (isFree) {
       return (
         <div className="flex flex-col mt-2 mb-1 w-full">
