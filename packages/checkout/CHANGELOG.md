@@ -1,5 +1,25 @@
 # @0xsequence/checkout
 
+## 5.3.29
+
+### Patch Changes
+
+- Preview mode
+
+- Updated dependencies []:
+  - @0xsequence/connect@5.3.29
+  - @0xsequence/hooks@5.3.29
+
+## 5.3.28
+
+### Patch Changes
+
+- Minor fixes and improvements
+
+- Updated dependencies []:
+  - @0xsequence/connect@5.3.28
+  - @0xsequence/hooks@5.3.28
+
 ## 5.3.27
 
 ### Patch Changes

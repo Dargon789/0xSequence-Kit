@@ -74,7 +74,7 @@ export const SequenceConnectPreviewProvider = (props: SequenceConnectProviderPro
             >
               <div id="kit-provider">
                 <ThemeProvider root="#kit-provider" scope="kit" theme={theme}>
-                  <Connect onClose={() => {}} emailConflictInfo={emailConflictInfo} isPreview {...props} />
+                  <Connect onClose={() => {}} emailConflictInfo={emailConflictInfo} isInline {...props} />
                 </ThemeProvider>
               </div>
               {children}
