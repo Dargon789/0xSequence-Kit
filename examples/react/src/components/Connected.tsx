@@ -42,7 +42,10 @@ const searchParams = new URLSearchParams(location.search)
 const isDebugMode = searchParams.has('debug')
 const checkoutProvider = searchParams.get('checkoutProvider')
 const onRampProvider = searchParams.get('onRampProvider')
-const checkoutPreset = searchParams.get('checkoutPreset') || 'forte-payment-erc1155-sale-native-token-testnet'
+const checkoutPreset = searchParams.get('checkoutPreset') || 'forte-transak-payment-erc1155-sale-native-token-testnet'
+
+// @ts-ignore
+const isDev = __SEQUENCE_WEB_SDK_IS_DEV__
 
 export const Connected = () => {
   const { openTransactionStatusModal } = useTransactionStatusModal()
@@ -421,9 +424,6 @@ export const Connected = () => {
       recipientAddress: address,
       creditCardProviders: [creditCardProvider],
       onRampProvider: onRampProvider ? (onRampProvider as TransactionOnRampProvider) : TransactionOnRampProvider.transak,
-      transakConfig: {
-        contractId: '674eb5613d739107bbd18ed2'
-      },
       onSuccess: (txnHash?: string) => {
         console.log('success!', txnHash)
       },
