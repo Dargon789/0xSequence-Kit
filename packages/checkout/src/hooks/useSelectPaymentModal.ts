@@ -79,11 +79,7 @@ type UseSelectPaymentModalReturnType = {
  *       recipientAddress: address,
  *       currencyAddress,
  *       collectionAddress,
- *       creditCardProviders: ['sardine', 'transak'],
- *       transakConfig: {
- *         contractId: 'your-contract-id',
- *         apiKey: 'your-api-key'
- *       },
+ *       creditCardProviders: ['transak'],
  *       copyrightText: 'ⓒ2024 Your Company',
  *       onSuccess: (txnHash: string) => {
  *         console.log('success!', txnHash)

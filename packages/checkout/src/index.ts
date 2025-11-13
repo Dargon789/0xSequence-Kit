@@ -6,7 +6,6 @@ export { useCheckoutModal } from './hooks/useCheckoutModal.js'
 export { useAddFundsModal } from './hooks/useAddFundsModal.js'
 export { useSelectPaymentModal } from './hooks/useSelectPaymentModal.js'
 export { useTransferFundsModal } from './hooks/useTransferFundsModal.js'
-export { useCheckoutWhitelistStatus } from './hooks/useCheckoutWhitelistStatus.js'
 export { useSwapModal } from './hooks/useSwapModal.js'
 export { useERC1155SaleContractCheckout, useERC1155SaleContractPaymentModal } from './hooks/useERC1155SaleContractCheckout.js'
 export { useCheckoutUI } from './hooks/useCheckoutUI/index.js'
@@ -22,7 +21,7 @@ export { type TransactionStatusSettings } from './contexts/TransactionStatusModa
 export { useTransactionStatusModal } from './hooks/useTransactionStatusModal.js'
 
 // utils
-export { fetchTransakSupportedCountries, getTransakLink } from './utils/transak.js'
+export { fetchTransakSupportedCountries } from './utils/transak.js'
 
 // OnRampProvider
 export { TransactionOnRampProvider } from '@0xsequence/marketplace'
