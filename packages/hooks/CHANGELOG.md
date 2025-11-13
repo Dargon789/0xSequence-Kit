@@ -1,5 +1,29 @@
 # @0xsequence/hooks
 
+## 5.4.1
+
+### Patch Changes
+
+- Fix for add funds setting
+
+## 5.4.0
+
+### Major Changes
+
+- Removal of transak-related configuration parameters
+
+## 5.3.29
+
+### Patch Changes
+
+- Preview mode
+
+## 5.3.28
+
+### Patch Changes
+
+- Minor fixes and improvements
+
 ## 5.3.27
 
 ### Patch Changes
