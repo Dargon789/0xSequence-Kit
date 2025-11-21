@@ -12,8 +12,8 @@ interface WalletListItemProps {
 }
 
 export function App() {
-    const projectAccessKey = "AQAAAAAAAJbd_5JOcE50AqglZCtvu51YlGI"
-    const waasConfigKey = "eyJwcm9qZWN0SWQiOjM4NjIxLCJycGNTZXJ2ZXIiOiJodHRwczovL3dhYXMuc2VxdWVuY2UuYXBwIn0=" // Pass in your waasConfigKey
+    const projectAccessKey = 'YOUR_PROJECT_ACCESS_KEY' // Get yours from sequence.cloud
+    const waasConfigKey = 'YOUR_WAAS_CONFIG_KEY' // Pass in your waasConfigKey
     const enableConfirmationModal = true // change to your preference
     const googleClientId = 'YOUR_GOOGLE_CLIENT_ID' // Google Client ID
     const appleClientId = 'YOUR_APPLE_CLIENT_ID' // Apple Client ID
