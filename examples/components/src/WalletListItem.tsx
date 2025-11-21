@@ -18,7 +18,7 @@ export function App() {
     const googleClientId = 'YOUR_GOOGLE_CLIENT_ID' // Google Client ID
     const appleClientId = 'YOUR_APPLE_CLIENT_ID' // Apple Client ID
     const appleRedirectURI = 'YOUR_APP_SCHEME://auth' // Apple Redirect URI
-    const walletConnectProjectId = 'walletConnectProjectId' // Pass in your WalletConnect Project ID
+    const walletConnectProjectId = 'YOUR_WALLETCONNECT_PROJECT_ID' // Pass in your WalletConnect Project ID
     
     const config = createConfig('waas', {
       projectAccessKey,
